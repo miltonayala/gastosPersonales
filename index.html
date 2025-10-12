@@ -18,7 +18,7 @@
         <!-- 1. Header/Summary Section (Top) -->
         <div class="header-bg p-8 flex flex-col items-center border-b border-gray-200">
             <!-- Title -->
-            <h1 class="text-2xl font-semibold text-gray-800 mb-6 relative z-10">Presupuesto de Julio 2020</h1>
+            <h1 id="titulo" class="text-2xl font-semibold text-gray-800 mb-6 relative z-10"></h1>
 
             <!-- Total Balance -->
             <div class="relative z-10 mb-8">
@@ -28,13 +28,13 @@
             <!-- Income/Expense Stats -->
             <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full max-w-xs relative z-10">
                 
-                <!-- Ingresos (Income) -->
+                <!-- Ingresos -->
                 <div class="flex-1 text-center py-2 px-3 rounded-lg bg-slate-800 text-white shadow-md">
                     <div class="text-xs font-medium uppercase opacity-75">Ingresos:</div>
                     <div class="text-lg font-medium">+800.00</div>
                 </div>
 
-                <!-- Egresos (Expenses) -->
+                <!-- Egresos -->
                 <div class="flex-1 text-center py-2 px-3 rounded-lg bg-white border border-gray-300 text-slate-800 shadow-sm">
                     <div class="text-xs font-medium uppercase opacity-75">Egresos:</div>
                     <div class="text-lg font-medium">-300.00</div>
@@ -48,14 +48,13 @@
             </div>
         </div>
 
-        <!-- 2. Transaction/List Section (Bottom) -->
+        <!-- 2. Transaction/List Section  -->
         <div class="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
 
-            <!-- Left Pane: New Transaction Form -->
+            <!-- Izquierda: Form de nuevas transacciones -->
             <div class="order-2 md:order-1">
                 <div class="flex items-center mb-6">
-                    <!-- Placeholder for the small circle/icon -->
-                    <div class="w-2 h-2 rounded-full bg-gray-400 mr-2"></div>
+                    <div class="w-2 h-2 rounded-full bg-green-400 mr-2"></div>
                     <h2 class="text-xl font-semibold text-gray-800">Transacción</h2>
                 </div>
 
@@ -65,7 +64,7 @@
                     <div>
                         <label for="tipo" class="sr-only">Tipo</label>
                         <select id="tipo" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out">
-                            <option>Ingreso | Egreso</option>
+                            <option>Selecciona una opción...</option>
                             <option value="ingreso">Ingreso</option>
                             <option value="egreso">Egreso</option>
                         </select>
@@ -124,7 +123,20 @@
             </div>
         </div>
     </div>
+    <script src="scripts/main.js"></script>
 
+    <script>
+    window.addEventListener('DOMContentLoaded', function() {
+        try {
+            const mesActual = getDate();
+            document.getElementById('titulo').textContent = `Presupuesto de ${mesActual}`;
+        } catch (error) {
+            console.error('Error al obtener la fecha:', error);
+            document.getElementById('titulo').textContent = 'Presupuesto Personal';
+        }
+
+    });
+    </script>
 </body>
 </html>
 
