@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuesto Dashboard</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom font application and general styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Custom shadow for a lifted, macOS-like card look */
+        .mac-shadow {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 0 5px rgba(0, 0, 0, 0.03);
+        }
+
+        /* Custom background gradient and overlay for the header section */
+        .header-bg {
+            background-color: #f7f7f7; /* Very light gray */
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Simulating the abstract background shapes in the original image */
+        .header-bg::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -80px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            opacity: 0.6;
+            filter: blur(40px);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 md:p-8 min-h-screen flex justify-center items-start">
+
+    <!-- Main Container Card -->
+    <div class="w-full max-w-4xl bg-white rounded-xl overflow-hidden mac-shadow">
+
+        <!-- 1. Header/Summary Section (Top) -->
+        <div class="header-bg p-8 flex flex-col items-center border-b border-gray-200">
+            <!-- Title -->
+            <h1 class="text-2xl font-semibold text-gray-800 mb-6 relative z-10">Presupuesto de Julio 2020</h1>
+
+            <!-- Total Balance -->
+            <div class="relative z-10 mb-8">
+                <p class="text-5xl font-light text-gray-800">+ 500.00</p>
+            </div>
+            
+            <!-- Income/Expense Stats -->
+            <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full max-w-xs relative z-10">
+                
+                <!-- Ingresos (Income) -->
+                <div class="flex-1 text-center py-2 px-3 rounded-lg bg-slate-800 text-white shadow-md">
+                    <div class="text-xs font-medium uppercase opacity-75">Ingresos:</div>
+                    <div class="text-lg font-medium">+800.00</div>
+                </div>
+
+                <!-- Egresos (Expenses) -->
+                <div class="flex-1 text-center py-2 px-3 rounded-lg bg-white border border-gray-300 text-slate-800 shadow-sm">
+                    <div class="text-xs font-medium uppercase opacity-75">Egresos:</div>
+                    <div class="text-lg font-medium">-300.00</div>
+                </div>
+            </div>
+            
+            <!-- Porcentaje de gastos -->
+            <div class="mt-6 text-sm text-gray-600 relative z-10">
+                <span class="font-normal">Porcentaje de gastos:</span>
+                <span class="inline-block ml-2 px-2 py-0.5 rounded-full text-xs font-bold bg-slate-800 text-white">12%</span>
+            </div>
+        </div>
+
+        <!-- 2. Transaction/List Section (Bottom) -->
+        <div class="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+
+            <!-- Left Pane: New Transaction Form -->
+            <div class="order-2 md:order-1">
+                <div class="flex items-center mb-6">
+                    <!-- Placeholder for the small circle/icon -->
+                    <div class="w-2 h-2 rounded-full bg-gray-400 mr-2"></div>
+                    <h2 class="text-xl font-semibold text-gray-800">Transacción</h2>
+                </div>
+
+                <form id="transaction-form" class="space-y-4">
+                    
+                    <!-- Dropdown: Ingreso | Egreso -->
+                    <div>
+                        <label for="tipo" class="sr-only">Tipo</label>
+                        <select id="tipo" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out">
+                            <option>Ingreso | Egreso</option>
+                            <option value="ingreso">Ingreso</option>
+                            <option value="egreso">Egreso</option>
+                        </select>
+                    </div>
+
+                    <!-- Input: Descripción -->
+                    <div>
+                        <label for="descripcion" class="sr-only">Descripción</label>
+                        <input type="text" id="descripcion" placeholder="Descripción" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out">
+                    </div>
+
+                    <!-- Input: Monto -->
+                    <div>
+                        <label for="monto" class="sr-only">Monto</label>
+                        <input type="number" id="monto" placeholder="Monto" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out">
+                    </div>
+
+                    <!-- Button: Agregar -->
+                    <button type="submit" class="w-full py-3 mt-2 rounded-lg bg-slate-800 text-white font-medium hover:bg-slate-700 transition duration-150 ease-in-out shadow-lg shadow-slate-500/30">
+                        Agregar
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right Pane: Transaction List -->
+            <div class="order-1 md:order-2">
+                <!-- Tabs -->
+                <div class="flex mb-6 rounded-lg overflow-hidden border border-gray-300">
+                    <button class="flex-1 py-3 bg-slate-800 text-white text-sm font-medium transition duration-150 ease-in-out">
+                        Ingresos
+                    </button>
+                    <button class="flex-1 py-3 bg-gray-200 text-gray-700 text-sm font-medium transition duration-150 ease-in-out">
+                        Egresos
+                    </button>
+                </div>
+                
+                <!-- Transaction List Items (Mock Data) -->
+                <div class="space-y-3">
+                    
+                    <!-- Item 1 -->
+                    <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-200">
+                        <span class="text-gray-700 font-medium">Salario 1</span>
+                        <span class="text-green-600 font-medium">+ 400.00</span>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-200">
+                        <span class="text-gray-700 font-medium">Salario 2</span>
+                        <span class="text-green-600 font-medium">+ 400.00</span>
+                    </div>
+
+                    <!-- Mock Expense Item for variety (currently in 'Ingresos' tab) -->
+                    <!-- <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-200">
+                        <span class="text-gray-700 font-medium">Alquiler</span>
+                        <span class="text-red-600 font-medium">- 600.00</span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
