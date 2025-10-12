@@ -76,13 +76,13 @@
                         <input type="text" id="descripcion" placeholder="Descripción" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out">
                     </div>
 
-                    <!-- Input: Monto -->
+                    <!-- Campu de Ingreso: Monto -->
                     <div>
                         <label for="monto" class="sr-only">Monto</label>
                         <input type="number" id="monto" placeholder="Monto" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out">
                     </div>
 
-                    <!-- Button: Agregar -->
+                    <!-- Boton: Agregar -->
                     <button type="submit" class="w-full py-3 mt-2 rounded-lg bg-slate-800 text-white font-medium hover:bg-slate-700 transition duration-150 ease-in-out shadow-lg shadow-slate-500/30">
                         Agregar
                     </button>
@@ -93,28 +93,28 @@
             <div class="order-1 md:order-2">
                 <!-- Tabs -->
                 <div class="flex mb-6 rounded-lg overflow-hidden border border-gray-300">
-                    <button class="flex-1 py-3 bg-slate-800 text-white text-sm font-medium transition duration-150 ease-in-out">
+                    <button id="ingresos-button" class="flex-1 py-3 bg-slate-800 text-white text-sm font-medium transition duration-150 ease-in-out">
                         Ingresos
                     </button>
-                    <button class="flex-1 py-3 bg-gray-200 text-gray-700 text-sm font-medium transition duration-150 ease-in-out">
+                    <button id="egresos-button" class="flex-1 py-3 bg-gray-200 text-gray-700 text-sm font-medium transition duration-150 ease-in-out">
                         Egresos
                     </button>
                 </div>
                 
                 <!-- Transaction List Items (Mock Data) -->
-                <div class="space-y-3">
+                <div id="lista-transacciones" class="space-y-3">
                     
-                    <!-- Item 1 -->
+                    <!-- Default elemento 1 -->
                     <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-200">
                         <span class="text-gray-700 font-medium">Salario 1</span>
                         <span class="text-green-600 font-medium">+ 400.00</span>
                     </div>
-
-                    <!-- Item 2 -->
+                    <!-- Default elemento 2 -->
                     <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-200">
                         <span class="text-gray-700 font-medium">Salario 2</span>
                         <span class="text-green-600 font-medium">+ 400.00</span>
                     </div>
+                    <!-- Default elemento 3 -->
                     <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-200">
                         <span class="text-gray-700 font-medium">Alquiler</span>
                         <span class="text-red-600 font-medium">- 600.00</span>
@@ -135,6 +135,25 @@
             document.getElementById('titulo').textContent = 'Presupuesto Personal';
         }
 
+    });
+
+
+    const buttonIngresos = document.getElementById('ingresos-button');
+
+        buttonIngresos.addEventListener('click', function() {
+        buttonIngresos.classList.add('bg-slate-800', 'text-white');
+        buttonIngresos.classList.remove('bg-gray-200', 'text-gray-700');
+        buttonEgresos.classList.remove('bg-slate-800', 'text-white');
+        buttonEgresos.classList.add('bg-gray-200', 'text-gray-700');
+    });
+
+    const buttonEgresos = document.getElementById('egresos-button');
+
+    buttonEgresos.addEventListener('click', function() {
+        buttonEgresos.classList.add('bg-slate-800', 'text-white');
+        buttonEgresos.classList.remove('bg-gray-200', 'text-gray-700');
+        buttonIngresos.classList.remove('bg-slate-800', 'text-white');
+        buttonIngresos.classList.add('bg-gray-200', 'text-gray-700');
     });
     </script>
 </body>
