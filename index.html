@@ -1,161 +1,168 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Presupuesto Personal</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="scripts/panel.js" type="module"></script>
     <!-- Fuentes -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/styles.css">
-</head>
-<body class="bg-gray-100 p-4 md:p-8 min-h-screen flex justify-center items-start">
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/styles.css" />
+  </head>
+  <body
+    class="bg-gray-100 p-4 md:p-8 min-h-screen flex justify-center items-start"
+  >
     <!-- Card del contenedor principal -->
-    <div class="w-full max-w-4xl bg-white rounded-xl overflow-hidden mac-shadow">
+    <div
+      class="w-full max-w-4xl bg-white rounded-xl overflow-hidden mac-shadow"
+    >
+      <!-- 1. Header/Summary Section (Top) -->
+      <div
+        class="header-bg p-8 flex flex-col items-center border-b border-gray-200"
+      >
+        <!-- Title -->
+        <h1
+          id="titulo"
+          class="text-2xl font-semibold text-gray-800 mb-6 relative z-10"
+        ></h1>
 
-        <!-- 1. Header/Summary Section (Top) -->
-        <div class="header-bg p-8 flex flex-col items-center border-b border-gray-200">
-            <!-- Title -->
-            <h1 id="titulo" class="text-2xl font-semibold text-gray-800 mb-6 relative z-10"></h1>
-
-            <!-- Total Balance -->
-            <div class="relative z-10 mb-8">
-                <p class="text-5xl font-light text-gray-800">+ 500.00</p>
-            </div>
-            
-            <!-- Income/Expense Stats -->
-            <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full max-w-xs relative z-10">
-                
-                <!-- Ingresos -->
-                <div class="flex-1 text-center py-2 px-3 rounded-lg bg-slate-800 text-white shadow-md">
-                    <div class="text-xs font-medium uppercase opacity-75">Ingresos:</div>
-                    <div class="text-lg font-medium">+800.00</div>
-                </div>
-
-                <!-- Egresos -->
-                <div class="flex-1 text-center py-2 px-3 rounded-lg bg-white border border-gray-300 text-slate-800 shadow-sm">
-                    <div class="text-xs font-medium uppercase opacity-75">Egresos:</div>
-                    <div class="text-lg font-medium">-300.00</div>
-                </div>
-            </div>
-            
-            <!-- Porcentaje de gastos -->
-            <div class="mt-6 text-sm text-gray-600 relative z-10">
-                <span class="font-normal">Porcentaje de gastos:</span>
-                <span class="inline-block ml-2 px-2 py-0.5 rounded-full text-xs font-bold bg-slate-800 text-white">12%</span>
-            </div>
+        <!-- Total Balance -->
+        <div class="relative z-10 mb-8">
+          <p class="text-5xl font-light text-gray-800">+ 500.00</p>
         </div>
 
-        <!-- 2. Transaction/List Section  -->
-        <div class="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-
-            <!-- Izquierda: Form de nuevas transacciones -->
-            <div class="order-2 md:order-1">
-                <div class="flex items-center mb-6">
-                    <div class="w-2 h-2 rounded-full bg-green-400 mr-2"></div>
-                    <h2 class="text-xl font-semibold text-gray-800">Transacción</h2>
-                </div>
-
-                <form id="transaction-form" class="space-y-4">
-                    
-                    <!-- Dropdown: Ingreso | Egreso -->
-                    <div>
-                        <label for="tipo" class="sr-only">Tipo</label>
-                        <select id="tipo" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out">
-                            <option>Selecciona una opción...</option>
-                            <option value="ingreso">Ingreso</option>
-                            <option value="egreso">Egreso</option>
-                        </select>
-                    </div>
-
-                    <!-- Input: Descripción -->
-                    <div>
-                        <label for="descripcion" class="sr-only">Descripción</label>
-                        <input type="text" id="descripcion" placeholder="Descripción" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out">
-                    </div>
-
-                    <!-- Campu de Ingreso: Monto -->
-                    <div>
-                        <label for="monto" class="sr-only">Monto</label>
-                        <input type="number" id="monto" placeholder="Monto" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out">
-                    </div>
-
-                    <!-- Boton: Agregar -->
-                    <button type="submit" class="w-full py-3 mt-2 rounded-lg bg-slate-800 text-white font-medium hover:bg-slate-700 transition duration-150 ease-in-out shadow-lg shadow-slate-500/30">
-                        Agregar
-                    </button>
-                </form>
+        <!-- Income/Expense Stats -->
+        <div
+          class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 w-full max-w-xs relative z-10"
+        >
+          <!-- Ingresos -->
+          <div
+            class="flex-1 text-center py-2 px-3 rounded-lg bg-slate-800 text-white shadow-md"
+          >
+            <div class="text-xs font-medium uppercase opacity-75">
+              Ingresos:
             </div>
+            <div class="text-lg font-medium">+800.00</div>
+          </div>
 
-            <!-- Panel Derecho de Ingresos / Egresos -->
-            <div class="order-1 md:order-2">
-                <!-- Tabs -->
-                <div class="flex mb-6 rounded-lg overflow-hidden border border-gray-300">
-                    <button id="ingresos-button" class="flex-1 py-3 bg-slate-800 text-white text-sm font-medium transition duration-150 ease-in-out">
-                        Ingresos
-                    </button>
-                    <button id="egresos-button" class="flex-1 py-3 bg-gray-200 text-gray-700 text-sm font-medium transition duration-150 ease-in-out">
-                        Egresos
-                    </button>
-                </div>
-                
-                <!-- Lista de Transacciones -->
-                <div id="lista-transacciones" class="space-y-3">
-                    
-                    <!-- Default elemento 1 -->
-                    <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-200">
-                        <span class="text-gray-700 font-medium">Salario 1</span>
-                        <span class="text-green-600 font-medium">+ 400.00</span>
-                    </div>
-                    <!-- Default elemento 2 -->
-                    <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-200">
-                        <span class="text-gray-700 font-medium">Salario 2</span>
-                        <span class="text-green-600 font-medium">+ 400.00</span>
-                    </div>
-                    <!-- Default elemento 3 -->
-                    <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-200">
-                        <span class="text-gray-700 font-medium">Alquiler</span>
-                        <span class="text-red-600 font-medium">- 600.00</span>
-                    </div>
-                </div>
-            </div>
+          <!-- Egresos -->
+          <div
+            class="flex-1 text-center py-2 px-3 rounded-lg bg-white border border-gray-300 text-slate-800 shadow-sm"
+          >
+            <div class="text-xs font-medium uppercase opacity-75">Egresos:</div>
+            <div class="text-lg font-medium">-300.00</div>
+          </div>
         </div>
+
+        <!-- Porcentaje de gastos -->
+        <div class="mt-6 text-sm text-gray-600 relative z-10">
+          <span class="font-normal">Porcentaje de gastos:</span>
+          <span
+            class="inline-block ml-2 px-2 py-0.5 rounded-full text-xs font-bold bg-slate-800 text-white"
+            >12%</span
+          >
+        </div>
+      </div>
+
+      <!-- 2. Transaction/List Section  -->
+      <div class="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+        <!-- Izquierda: Form de nuevas transacciones -->
+        <div class="order-2 md:order-1">
+          <div class="flex items-center mb-6">
+            <div class="w-2 h-2 rounded-full bg-green-400 mr-2"></div>
+            <h2 class="text-xl font-semibold text-gray-800">Transacción</h2>
+          </div>
+
+          <form id="transaction-form" class="space-y-4">
+            <!-- Dropdown: Ingreso | Egreso -->
+            <div>
+              <label for="tipo" class="sr-only">Tipo</label>
+              <select
+                id="tipo"
+                class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out"
+              >
+                <option>Selecciona una opción...</option>
+                <option value="ingreso">Ingreso</option>
+                <option value="egreso">Egreso</option>
+              </select>
+            </div>
+
+            <!-- Input: Descripción -->
+            <div>
+              <label for="descripcion" class="sr-only">Descripción</label>
+              <input
+                type="text"
+                id="descripcion"
+                placeholder="Descripción"
+                class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out"
+              />
+            </div>
+
+            <!-- Campu de Ingreso: Monto -->
+            <div>
+              <label for="monto" class="sr-only">Monto</label>
+              <input
+                type="number"
+                id="monto"
+                placeholder="Monto"
+                class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out"
+              />
+            </div>
+
+            <!-- Boton: Agregar -->
+            <button
+              type="submit"
+              class="w-full py-3 mt-2 rounded-lg bg-slate-800 text-white font-medium hover:bg-slate-700 transition duration-150 ease-in-out shadow-lg shadow-slate-500/30"
+            >
+              Agregar
+            </button>
+          </form>
+        </div>
+
+        <!-- Panel Derecho de Ingresos / Egresos -->
+        <div class="order-1 md:order-2">
+          <!-- Tabs -->
+          <div
+            class="flex mb-6 rounded-lg overflow-hidden border border-gray-300"
+          >
+            <button
+              id="ingresos-button"
+              class="flex-1 py-3 bg-slate-800 text-white text-sm font-medium transition duration-150 ease-in-out"
+            >
+              Ingresos
+            </button>
+            <button
+              id="egresos-button"
+              class="flex-1 py-3 bg-gray-200 text-gray-700 text-sm font-medium transition duration-150 ease-in-out"
+            >
+              Egresos
+            </button>
+          </div>
+
+          <!-- Lista de Transacciones -->
+          <div id="lista-transacciones" class="space-y-3"></div>
+        </div>
+      </div>
     </div>
     <script src="scripts/main.js"></script>
-
     <script>
-    window.addEventListener('DOMContentLoaded', function() {
+      window.addEventListener("DOMContentLoaded", function () {
         try {
-            const mesActual = getDate();
-            document.getElementById('titulo').textContent = `Presupuesto de ${mesActual}`;
+          const mesActual = getDate();
+          document.getElementById(
+            "titulo"
+          ).textContent = `Presupuesto de ${mesActual}`;
         } catch (error) {
-            console.error('Error al obtener la fecha:', error);
-            document.getElementById('titulo').textContent = 'Presupuesto Personal';
+          console.error("Error al obtener la fecha:", error);
+          document.getElementById("titulo").textContent =
+            "Presupuesto Personal";
         }
-
-    });
-
-
-    const buttonIngresos = document.getElementById('ingresos-button');
-
-        buttonIngresos.addEventListener('click', function() {
-        buttonIngresos.classList.add('bg-slate-800', 'text-white');
-        buttonIngresos.classList.remove('bg-gray-200', 'text-gray-700');
-        buttonEgresos.classList.remove('bg-slate-800', 'text-white');
-        buttonEgresos.classList.add('bg-gray-200', 'text-gray-700');
-    });
-
-    const buttonEgresos = document.getElementById('egresos-button');
-
-    buttonEgresos.addEventListener('click', function() {
-        buttonEgresos.classList.add('bg-slate-800', 'text-white');
-        buttonEgresos.classList.remove('bg-gray-200', 'text-gray-700');
-        buttonIngresos.classList.remove('bg-slate-800', 'text-white');
-        buttonIngresos.classList.add('bg-gray-200', 'text-gray-700');
-    });
+      });
     </script>
-</body>
+  </body>
 </html>
-
