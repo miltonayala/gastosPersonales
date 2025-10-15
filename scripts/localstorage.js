@@ -65,8 +65,8 @@ export const obtenerBase = (nombreStorage) => {
   return convertirEnJson;
 };
 
-export const listarInformacionUsuario = (nombreStorage) => {
-  const base = obtenerBase(nombreStorage);
+export const listarInformacionUsuario = () => {
+  const base = obtenerBase("basedefault");
   const usuarioLogeado = base.find((u) => u.logeado === true);
   return usuarioLogeado;
 };
