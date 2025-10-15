@@ -2,9 +2,11 @@ import { inicializarBase, obtenerBase } from "./localstorage.js";
 
 window.addEventListener("DOMContentLoaded", function () {
   inicializarBase("basedefault");
+  // inicializar localstorage para poder trabajar
   const base = obtenerBase("basedefault");
+  //guarda estado de inicio de sesion
   const sesionActiva = base.find(u => u.logeado === true)
-  console.log(sesionActiva)
+
   const formLogin = document.getElementById("login");
 
   formLogin.addEventListener("submit", (e) => {
