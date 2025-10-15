@@ -8,6 +8,7 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="scripts/panel.js" type="module"></script>
+  <script src="scripts/transactions.js"></script>
   <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles/styles.css" />
@@ -23,7 +24,7 @@
 
       <!-- Total Balance -->
       <div class="relative z-10 mb-8">
-        <p class="text-5xl font-light text-gray-800">+ 500.00</p>
+        <p id="balance" class="text-5xl font-light text-gray-800">+ 500.00</p>
       </div>
 
       <!-- Income/Expense Stats -->
@@ -63,7 +64,7 @@
           <!-- Dropdown: Ingreso | Egreso -->
           <div>
             <label for="tipo" class="sr-only">Tipo</label>
-            <select id="tipo"
+            <select itemid="tipo" id="tipo"
               class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out">
               <option>Selecciona una opción...</option>
               <option value="ingreso">Ingreso</option>
@@ -86,7 +87,7 @@
           </div>
 
           <!-- Boton: Agregar -->
-          <button type="submit"
+          <button id="agregar" type="submit"
             class="w-full py-3 mt-2 rounded-lg bg-slate-800 text-white font-medium hover:bg-slate-700 transition duration-150 ease-in-out shadow-lg shadow-slate-500/30">
             Agregar
           </button>
