@@ -160,7 +160,7 @@ window.addEventListener("DOMContentLoaded", function () {
                 text: "Transacción registrada exitosamente",
                 className: "info",
                 style: {
-                    background: "linear-gradient(to right, #1d3611ff, #3d9339ff)",
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
                 },
             }).showToast();
             if (tipoTransaccion === "egreso") {
