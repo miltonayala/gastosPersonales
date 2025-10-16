@@ -1,12 +1,12 @@
 import { inicializarBase, listarInformacionUsuario } from "./localstorage.js";
 
-window.addEventListener("DOMContentLoaded", function () {
+
   inicializarBase("basedefault");
   const datos = listarInformacionUsuario();
 
   const lista = document.getElementById("lista-transacciones");
 
-  const dibujarTransacciones = (base, elemento, tipoDeTransaccion) => {
+  export const dibujarTransacciones = (base, elemento, tipoDeTransaccion) => {
     elemento.innerHTML = "";
     base.transacciones.forEach((t) => {
       const div = document.createElement("div");
@@ -49,4 +49,4 @@ window.addEventListener("DOMContentLoaded", function () {
 
     dibujarTransacciones(datos, lista, "egreso");
   });
-});
+

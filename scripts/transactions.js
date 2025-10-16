@@ -1,3 +1,6 @@
+import { dibujarTransacciones } from "./panel.js";
+import { listarInformacionUsuario } from "./localstorage.js";
+
 window.addEventListener("DOMContentLoaded", function () {
     // ===== ELEMENTOS DEL DOM =====
     const balance = document.getElementById("balance");
@@ -96,7 +99,9 @@ window.addEventListener("DOMContentLoaded", function () {
         if (exito) {
             // Pasar los valores como parámetros
             ingresaTransaccionStorage(tipoTransaccion, montoTransaccion, descripcionTransaccion);
-            
+            const datos = listarInformacionUsuario()
+            const lista = document.getElementById("lista-transacciones");
+            dibujarTransacciones(datos, lista, "ingreso")
             // Limpiar campos
             descripcion.value = "";
             montoInput.value = "";
