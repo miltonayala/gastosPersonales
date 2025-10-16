@@ -17,7 +17,7 @@ if (sesionActiva === undefined) {
 
 
 // obtener la base del localstorage
-const datos = listarInformacionUsuario();
+let datos = listarInformacionUsuario();
 
 const lista = document.getElementById("lista-transacciones");
 
@@ -53,7 +53,7 @@ const convertirFecha = (fecha) => {
 export const dibujarTransacciones = (base, elemento, tipoDeTransaccion) => {
   // limpiamos el div contenedor
   elemento.innerHTML = "";
-
+  datos = listarInformacionUsuario()
   let totalIngresos = 0;
 
   for (const transaccion of base.transacciones) {
@@ -113,6 +113,7 @@ buttonIngresos.addEventListener("click", function () {
   buttonEgresos.classList.add("bg-gray-200", "text-gray-700");
 
   dibujarTransacciones(datos, lista, "ingreso");
+
 });
 
 // se agrega el evento egreso
@@ -124,5 +125,7 @@ buttonEgresos.addEventListener("click", function () {
   buttonIngresos.classList.remove("bg-slate-800", "text-white");
   buttonIngresos.classList.add("bg-gray-200", "text-gray-700");
 
+
   dibujarTransacciones(datos, lista, "egreso");
+
 });
