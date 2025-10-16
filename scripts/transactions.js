@@ -1,16 +1,18 @@
+import { dibujarTransacciones } from "./panel.js";
+import { listarInformacionUsuario } from "./localstorage.js";
+
 window.addEventListener("DOMContentLoaded", function () {
     // ===== ELEMENTOS DEL DOM =====
-    const balance = document.getElementById("balance"); //balance de saldo total
-    const boton = document.getElementById("agregar"); //boton agregar transaccion
-    const tipoDropDown = document.getElementById("tipo"); //tipo de transaccion
-    const montoInput = document.getElementById("monto"); //monto de transaccion
-    const descripcion = document.getElementById("descripcion") //descripcion de transaccion
+    const balance = document.getElementById("balance");
+    const boton = document.getElementById("agregar"); 
+    const tipoDropDown = document.getElementById("tipo");
+    const montoInput = document.getElementById("monto");
+    const descripcion = document.getElementById("descripcion");
 
     // ===== CARGAR SALDO INICIAL =====
     function cargarSaldoInicial() {
         const usersBase = JSON.parse(localStorage.getItem("basedefault"));
         const usuario = usersBase.find((u) => u.logeado === true);
-        console.log(usuario.transacciones)
 
         if (usuario && balance) {
             balance.textContent = parseFloat(usuario.saldo).toFixed(2);
@@ -27,7 +29,6 @@ window.addEventListener("DOMContentLoaded", function () {
             return false;
         }
 
-        // Convertir a número y validar
         const saldoActual = parseFloat(usuario.saldo);
         const monto = parseFloat(saldo);
 
@@ -36,83 +37,78 @@ window.addEventListener("DOMContentLoaded", function () {
             return false;
         }
 
-        // Calcular nuevo saldo según el tipo
         const saldoNuevo = tipo.toLowerCase() === "ingreso"
             ? saldoActual + monto
             : saldoActual - monto;
 
-        // Validar que no quede saldo negativo
         if (saldoNuevo < 0) {
             alert("No tienes saldo suficiente para este gasto");
             return false;
         }
 
-        // Actualizar el saldo del usuario
         usuario.saldo = parseFloat(saldoNuevo.toFixed(2));
-
-        // Mostrar en el elemento HTML
         elemento.textContent = usuario.saldo.toFixed(2);
-
-        // Guardar en localStorage
         localStorage.setItem("basedefault", JSON.stringify(usersBase));
 
         return true;
     }
 
     // ===== INGRESAR TRANSACCION A STORAGE =====
-    function ingresaTransaccionStorage() {
+    function ingresaTransaccionStorage(tipo, monto, desc) {
         const nuevaTransaccion = {
-            tipo: tipoDropDown.value,
-            descripcion: descripcion.value,
-            monto: montoInput.value,
+            tipo: tipo,
+            descripcion: desc,
+            monto: parseFloat(monto),
         };
 
         const usersBase = JSON.parse(localStorage.getItem("basedefault"));
         const usuario = usersBase.find((u) => u.logeado === true);
 
-        // Hacer push del OBJETO
         usuario.transacciones.push(nuevaTransaccion);
-
-        // ACTUALIZAR LOCALSTORAGE
         localStorage.setItem("basedefault", JSON.stringify(usersBase));
     }
 
-    // ===== EVENTO DEL BOTÓN AGREGAR =====
-    boton.addEventListener("click", function () {
-        // Obtener valores actuales en el momento del clic
+    // ===== EVENTO CLICK DEL BOTÓN =====
+    boton.addEventListener("click", function (e) {
+        e.preventDefault();
+        
+        // Obtener valores actuales
         const tipoTransaccion = tipoDropDown.value;
         const montoTransaccion = montoInput.value;
+        const descripcionTransaccion = descripcion.value;
 
-        // Validaciones básicas
-        if (tipoTransaccion !== "ingreso" && tipoTransaccion !== "egreso") {    //valida DropDown
+        // Validaciones
+        if (tipoTransaccion !== "ingreso" && tipoTransaccion !== "egreso") {
             alert("Por favor selecciona un tipo de transacción");
             return;
         }
 
-        if (isNaN(montoTransaccion) || montoTransaccion <= 0) {                 //valida monto transaccion
+        if (isNaN(montoTransaccion) || parseFloat(montoTransaccion) <= 0) {
             alert("Por favor ingresa un monto válido");
             return;
         }
 
-        if (descripcion.value === "") {
-            alert("por favor ingresa el detalle de transaccion")
+        if (descripcionTransaccion.trim() === "") {
+            alert("Por favor ingresa el detalle de transacción");
             return;
         }
 
         // Intentar actualizar el saldo
         const exito = actualizarSaldo(balance, montoTransaccion, tipoTransaccion);
-        ingresaTransaccionStorage();
-
-        // Si se actualizó correctamente, limpiar los campos
+        
         if (exito) {
+            // Pasar los valores como parámetros
+            ingresaTransaccionStorage(tipoTransaccion, montoTransaccion, descripcionTransaccion);
+            const datos = listarInformacionUsuario()
+            const lista = document.getElementById("lista-transacciones");
+            dibujarTransacciones(datos, lista, "ingreso")
+            // Limpiar campos
             descripcion.value = "";
-            montoInput.value = ""; // Limpiar el campo de monto
-            tipoDropDown.selectedIndex = 0; // Resetear el dropdown al primer option
-            alert("Transaccion registrada exitosamente");
+            montoInput.value = "";
+            tipoDropDown.selectedIndex = 0;
+            alert("Transacción registrada exitosamente");
         }
     });
-
-
 
     // ===== INICIALIZAR =====
     cargarSaldoInicial();
