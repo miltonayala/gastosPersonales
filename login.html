@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inicio de Sesión</title>
+    <link rel="manifest" href="manifest.webmanifest" />
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link
@@ -72,33 +73,38 @@
     </div>
 
     <script>
+      window.addEventListener("DOMContentLoaded", async function () {
         const welcomes = [
-            "Welcome",
-            "Bonjour",
-            "Bienvenue",
-            "Willkommen",
-            "Benvenuto",
-            "Bem-vindo",
-            "欢迎",
-            "Добро пожаловать",
-            "أهلاً وسهلاً",
-            "ようこそ",
-            "환영합니다",
-            "Bienvenido",
+          "Welcome",
+          "Bonjour",
+          "Bienvenue",
+          "Willkommen",
+          "Benvenuto",
+          "Bem-vindo",
+          "欢迎",
+          "Добро пожаловать",
+          "أهلاً وسهلاً",
+          "ようこそ",
+          "환영합니다",
+          "Bienvenido",
         ];
         let idx = 0;
         const h1 = document.getElementById("welcome-title");
 
-      setInterval(() => {
-        // Desaparece
-        h1.style.opacity = 0;
-        setTimeout(() => {
-          h1.textContent = welcomes[idx];
-          idx = (idx + 1) % welcomes.length;
-          // Aparece
-          h1.style.opacity = 1;
-        }, 400);
-      }, 4000);
+        setInterval(() => {
+          // Desaparece
+          h1.style.opacity = 0;
+          setTimeout(() => {
+            h1.textContent = welcomes[idx];
+            idx = (idx + 1) % welcomes.length;
+            // Aparece
+            h1.style.opacity = 1;
+          }, 400);
+        }, 4000);
+        if (navigator.serviceWorker) {
+          const response = await navigator.serviceWorker.register("sw.js");
+        }
+      });
     </script>
     <script
       type="text/javascript"

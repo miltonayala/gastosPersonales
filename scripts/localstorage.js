@@ -51,7 +51,20 @@ const basePorDefecto = [
     clave: "12345678",
     saldo: 5000,
     logeado: false,
-    transacciones: [],
+    transacciones: [
+      {
+        tipo: "ingreso",
+        descripcion: "Salario 1",
+        monto: 2500,
+        fecha: "2025-10-12 11:50:18"
+      },
+      {
+        tipo: "ingreso",
+        descripcion: "Salario 2",
+        monto: 2500,
+        fecha: "2025-10-12 11:50:18"
+      }
+    ],
   },
 ];
 
