@@ -109,7 +109,6 @@ export const obtenerBase = (nombreStorage) => {
   return convertirEnJson;
 };
 
-// se lista el objeto del usuario con el estado logeado en true
 export const listarInformacionUsuario = () => {
   const base = obtenerBase("basedefault");
   const usuarioLogeado = base.find((u) => u.logeado === true);

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contáctanos</title>
+  
+    <script src="scripts/panel.js" type="module"></script>
+
+  <!-- Incluir Tailwind CSS para estilos responsivos -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Incluir fuente Dancing Script para el logo -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap"
+      rel="stylesheet"
+    />  
+  <!-- Incluir Font Awesome para iconos de redes sociales -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;  /* Fuente normal para el resto de la página */
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  
+ <!-- Comienzo Header -->
+<header class="bg-slate-700 text-white shadow-md w-screen mt-0 fixed top-0 left-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-2 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" style="text-decoration: none;">
+              <h3 style="
+                font-family: 'Dancing Script', cursive;
+                font-size: 2.5em;
+                color: #ffffff;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+                letter-spacing: -1px;
+                margin: 0;
+                padding: 5px;
+                display: inline-block;
+              ">Budgie</h3>
+            </a>
+
+            <!-- PC -->
+            <nav class="hidden md:flex space-x-4">
+                <a href="index.html" class="hover:bg-slate-700 px-3 py-2 rounded">Inicio</a>
+                <a href="contacto.html" class="hover:bg-slate-700 px-3 py-2 rounded">Contáctanos</a>
+                <a href="ayuda.html" class="hover:bg-slate-700 px-3 py-2 rounded">Ayuda</a>
+                <a href="logout.html" class="hover:bg-slate-700 px-3 py-2 rounded text-red-400">Cerrar Sesión</a>
+            </nav>
+
+            <!-- Celular -->
+            <button class="md:hidden text-gray-300 focus:outline-none" id="menu-btn"
+                aria-label="Abrir menú de navegación">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 32 32"
+                    stroke="currentColor" stroke-width="3">
+                    <line x1="6" y1="10" x2="26" y2="10" stroke-linecap="round" />
+                    <line x1="6" y1="16" x2="26" y2="16" stroke-linecap="round" />
+                    <line x1="6" y1="22" x2="26" y2="22" stroke-linecap="round" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Menu Hamburguesa -->
+<div id="mobile-menu"
+  class="hidden bg-slate-700/95 backdrop-blur-md md:hidden opacity-0 -translate-y-4 max-h-0 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
+
+            <a href="index.html" class="block px-6 py-2 text-gray-200 hover:bg-slate-600">Inicio</a>
+            <a href="contacto.html" class="block px-6 py-2 text-gray-200">Contáctanos</a>
+            <a href="ayuda.html" class="block px-6 py-2 text-gray-200 hover:bg-slate-600">Ayuda</a>
+            <a href="logout.html" class="block px-6 py-2 text-gray-200 bg-red-800 font-semibold">Cerrar Sesión</a>
+
+        </div>
+    </header>
+
+  <!-- Sección Principal -->
+  <main class="flex-grow p-4 md:p-8 flex justify-center items-start">
+    <div class="w-full max-w-3xl bg-white rounded-xl overflow-hidden shadow-xl mt-36">
+      
+      <!-- Encabezado del formulario -->
+      <div class="bg-slate-800 text-white p-8 text-center border-b border-gray-200">
+        <h1 class="text-3xl font-semibold mb-2">Contáctanos</h1>
+        <p class="text-gray-300 text-sm">Estamos aquí para ayudarte, envíanos tu mensaje</p>
+      </div>
+
+      <!-- Cuerpo del formulario y contacto -->
+      <div class="p-8 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Sección de Información de Contacto con header -->
+        <div class="flex flex-col justify-center space-y-4">
+          <header class="bg-gray-200 p-4 rounded-md mb-4">
+            <h2 class="text-xl font-semibold text-gray-800">Información de Contacto</h2>
+          </header>
+          <div>
+            <p class="text-gray-600 text-sm">
+              Si tienes preguntas, sugerencias o necesitas soporte, no dudes en escribirnos.  
+              Te responderemos lo antes posible.
+            </p>
+          </div>
+
+          <div class="text-sm text-gray-700 space-y-2">
+            <p><span class="font-semibold">📍 Dirección:</span> Calle Principal #123, San Salvador</p>
+            <p><span class="font-semibold">📞 Teléfono:</span> <a href="tel:+50312345678" class="text-blue-500 hover:underline">+503 1234 5678</a></p>
+            <p><span class="font-semibold">✉️ Correo:</span> <a href="mailto:contacto@misitio.com" class="text-blue-500 hover:underline">contacto@misitio.com</a></p>
+            
+            <!-- Redes sociales -->
+            <h3 class="text-md font-semibold mt-4">Redes Sociales:</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook fa-lg"></i> Facebook</a>
+              <a href="#" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter fa-lg"></i> Twitter</a>
+              <a href="#" class="text-pink-600 hover:text-pink-800"><i class="fab fa-instagram fa-lg"></i> Instagram</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario -->
+        <div>
+          <form id="contact-form" class="space-y-4">
+            <div>
+              <label for="nombre" class="sr-only">Nombre</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre"
+                     class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out">
+            </div>
+
+            <div>
+              <label for="email" class="sr-only">Correo electrónico</label>
+              <input type="email" id="email" name="email" placeholder="Tu correo electrónico"
+                     class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out">
+            </div>
+
+            <div>
+              <label for="mensaje" class="sr-only">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu mensaje..."
+                        class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-slate-500 focus:border-slate-500 transition duration-150 ease-in-out"></textarea>
+            </div>
+
+            <button type="submit"
+                    class="w-full py-3 mt-2 rounded-lg bg-slate-800 text-white font-medium hover:bg-slate-700 transition duration-150 ease-in-out shadow-lg shadow-slate-500/30">
+              Enviar Mensaje
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Sección del Mapa (al final) -->
+      <div class="p-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Ubicación en el Mapa</h3>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.067070964888!2d-89.218186!3d13.692940!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6330b7e2b9f8e5%3A0x7e6e8e6e8e6e8e6e!2sSan%20Salvador%2C%20El%20Salvador!5e0!3m2!1ses!2ssv!4v1718040000000!5m2!1ses!2ssv" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </main>
+
+  <!-- Sección del Footer -->
+  <footer class="bg-slate-700 text-gray-300 text-center py-6 mt-10">
+  <p>&copy; 2025 Budgie App | All rights reserved</p>
+  <div class="mt-2 space-x-4">
+    <a href="ayuda.html" class="hover:text-white">Ayuda</a>
+    <a href="contacto.html" class="hover:text-white">Contacto</a>
+  </div>
+  </footer>
+
+  <!-- Script para menú móvil -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>
