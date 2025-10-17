@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ayuda</title>
+  
+  <!-- Incluir Tailwind CSS para estilos responsivos -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Incluir fuente Dancing Script para el logo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Incluir Font Awesome para iconos de redes sociales -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;  /* Fuente normal para el resto de la página */
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- Sección del Header (actualizado con "Budgie") -->
+  <header class="bg-slate-800 text-white shadow-md">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- Logo con estilo cursivo, cambiado a "Budgie" -->
+      <h2 style="
+        font-family: 'Dancing Script', cursive;
+        font-size: 3.5em;
+        color: #ffffff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        letter-spacing: -1px;
+        margin: 0;
+        padding: 10px;
+        display: inline-block;
+      ">Budgie</h2>
+      
+      <!-- Menú de navegación para escritorio -->
+      <nav class="hidden md:flex space-x-4">
+        <a href="index.html" class="hover:bg-slate-700 px-3 py-2 rounded">Inicio</a>
+        <a href="ayuda.html" class="hover:bg-slate-700 px-3 py-2 rounded">Página Ayuda</a>
+        <a href="contacto.html" class="hover:bg-slate-700 px-3 py-2 rounded">Contáctanos</a>
+      </nav>
+      
+      <!-- Botón para menú móvil -->
+      <button class="md:hidden text-gray-300 focus:outline-none" id="menu-btn">
+        ☰
+      </button>
+    </div>
+
+    <!-- Menú desplegable móvil -->
+    <div class="hidden bg-slate-700 md:hidden" id="mobile-menu">
+      <a href="index.html" class="block px-6 py-2 text-gray-200 hover:bg-slate-600">Inicio</a>
+      <a href="ayuda.html" class="block px-6 py-2 text-gray-200 hover:bg-slate-600">Página Ayuda</a>
+      <a href="contacto.html" class="block px-6 py-2 text-gray-200 bg-slate-800 font-semibold">Contáctanos</a>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="flex-grow p-4 md:p-8 flex justify-center items-start">
+    <div class="w-full max-w-3xl bg-white rounded-xl overflow-hidden shadow-xl">
+
+      <!-- Encabezado del contenido -->
+      <div class="bg-slate-800 text-white p-8 text-center border-b border-gray-200">
+        <h1 class="text-3xl font-semibold mb-2">Ayuda y Preguntas Frecuentes</h1>
+        <p class="text-gray-300 text-sm">Encuentra respuestas a tus dudas comunes o contáctanos para más ayuda.</p>
+      </div>
+
+      <!-- Cuerpo del contenido -->
+      <div class="p-8 md:p-10 space-y-8">
+
+        <!-- Sección de FAQs -->
+        <div>
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Preguntas Frecuentes (FAQs)</h2>
+          <div class="space-y-6">
+            <!-- Pregunta 1 -->
+            <div>
+              <h3 class="text-xl font-medium text-slate-700">¿Cómo puedo registrarme en el sitio?</h3>
+              <p class="text-gray-600 mt-2">Para registrarte, ve a la página de Inicio y haz clic en el botón "Registrarse". Sigue los pasos para crear tu cuenta con tu correo y una contraseña segura.</p>
+            </div>
+            <!-- Pregunta 2 -->
+            <div>
+              <h3 class="text-xl font-medium text-slate-700">¿Qué hago si olvido mi contraseña?</h3>
+              <p class="text-gray-600 mt-2">En la página de inicio de sesión, haz clic en "Olvidé mi contraseña". Te enviaremos un enlace a tu correo electrónico para restablecerla. Asegúrate de revisar la carpeta de spam si no lo ves.</p>
+            </div>
+            <!-- Pregunta 3 -->
+            <div>
+              <h3 class="text-xl font-medium text-slate-700">¿Cuáles son los horarios de atención?</h3>
+              <p class="text-gray-600 mt-2">Nuestro equipo de soporte está disponible de lunes a viernes, de 9:00 AM a 5:00 PM (hora local). Fuera de estos horarios, puedes enviarnos un email y te responderemos lo antes posible.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección de contacto por correo -->
+        <div class="border-t border-gray-200 pt-6">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">¿Necesitas más ayuda?</h2>
+          <p class="text-gray-600 mb-4">Si no encuentras la respuesta que buscas, no dudes en contactarnos a través de nuestro correo electrónico. Estaremos encantados de ayudarte.</p>
+          <p class="text-gray-700"><span class="font-semibold">✉️ Correo:</span> <a href="mailto:ayuda@misitio.com" class="text-slate-600 hover:underline">ayuda@misitio.com</a></p>
+          <p class="text-gray-600 mt-2 text-sm">Envíanos un email con los detalles de tu consulta y te responderemos en menos de 24 horas hábiles.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Sección del Footer (mantenido consistente) -->
+  <footer class="bg-slate-800 text-gray-300 text-center py-6 mt-10">
+    <p>&copy; 2025 Mi Sitio Web. Todos los derechos reservados.</p>
+    <div class="mt-2 space-x-4">
+      <a href="#" class="hover:text-white">Política de privacidad</a>
+      <a href="#" class="hover:text-white">Términos de uso</a>
+    </div>
+  </footer>
+
+  <!-- Script para menú móvil -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>
