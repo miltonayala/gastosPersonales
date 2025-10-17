@@ -3,23 +3,26 @@ const basePorDefecto = [
   {
     usuario: "Gerson Borja",
     clave: "12345678",
-    saldo: 5000,
+    saldo: 1000,
     logeado: false,
     transacciones: [
       {
         tipo: "ingreso",
         descripcion: "Salario 1",
-        monto: 408,
+        monto: 500,
+        fecha: "2025-10-15 08:50:18"
       },
       {
         tipo: "ingreso",
         descripcion: "Salario 1",
-        monto: 408,
+        monto: 550,
+        fecha: "2025-10-14 11:50:18"
       },
       {
         tipo: "egreso",
-        descripcion: "Salario 1",
-        monto: 408,
+        descripcion: "Pago de luz",
+        monto: 50,
+        fecha: "2025-10-10 12:50:18"
       },
     ],
   },
@@ -32,12 +35,14 @@ const basePorDefecto = [
       {
         tipo: "ingreso",
         descripcion: "Salario 1",
-        monto: 408,
+        monto: 2500,
+        fecha: "2025-10-14 11:50:18"
       },
       {
         tipo: "ingreso",
         descripcion: "Salario 1",
-        monto: 408,
+        monto: 1000,
+        fecha: "2025-10-12 11:50:18"
       },
     ],
   },
@@ -65,6 +70,7 @@ export const obtenerBase = (nombreStorage) => {
   return convertirEnJson;
 };
 
+// se lista el objeto del usuario con el estado logeado en true
 export const listarInformacionUsuario = () => {
   const base = obtenerBase("basedefault");
   const usuarioLogeado = base.find((u) => u.logeado === true);
