@@ -2,6 +2,7 @@ import { dibujarTransacciones } from "./panel.js";
 import { listarInformacionUsuario } from "./localstorage.js";
 
 window.addEventListener("DOMContentLoaded", function () {
+      var tipoActual = "ingreso"; 
     // ===== ELEMENTOS DEL DOM (Consolidated from both) =====
     const balance = document.getElementById("balance"); // Balance de saldo total
     const boton = document.getElementById("agregar"); // Botón agregar transacción
@@ -238,11 +239,17 @@ window.addEventListener("DOMContentLoaded", function () {
             // 8. Actualizar el estilo del tab activo para reflejar el tipo de transacción agregada
             // (Esto asume que el usuario quiere ver inmediatamente la lista del tipo que acaba de agregar)
             if (tipoTransaccion === "egreso") {
+                    // Dibuja las transacciones de ingreso.
+                    tipoActual = "egreso";
+                    dibujarTransacciones(datos, listaElement, tipoActual);
                 buttonEgresos.classList.add("bg-slate-800", "text-white");
                 buttonEgresos.classList.remove("bg-gray-200", "text-gray-700");
                 buttonIngresos.classList.remove("bg-slate-800", "text-white");
                 buttonIngresos.classList.add("bg-gray-200", "text-gray-700");
             } else {
+                tipoActual = "ingreso";
+                    // Dibuja las transacciones de ingreso.
+                    dibujarTransacciones(datos, listaElement, tipoActual);
                 buttonIngresos.classList.add("bg-slate-800", "text-white");
                 buttonIngresos.classList.remove("bg-gray-200", "text-gray-700");
                 buttonEgresos.classList.remove("bg-slate-800", "text-white");

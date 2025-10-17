@@ -125,7 +125,7 @@ export const dibujarTransacciones = (base, elemento, tipoDeTransaccion) => {
 window.addEventListener("DOMContentLoaded", function () {
   
   // Variable para mantener el tab activo, necesaria para la función actualizarVistaTransacciones.
-  let tipoActual = "ingreso"; 
+  var tipoActual = "ingreso"; 
 
   // Referencias a los botones.
   const buttonIngresos = document.getElementById("ingresos-button");
