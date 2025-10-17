@@ -3,58 +3,6 @@ import { listarInformacionUsuario } from "./localstorage.js";
 
 window.addEventListener("DOMContentLoaded", function () {
     // ===== ELEMENTOS DEL DOM =====
-    const balance = document.getElementById("balance"); //balance de saldo total
-    const boton = document.getElementById("agregar"); //boton agregar transaccion
-    const tipoDropDown = document.getElementById("tipo"); //tipo de transaccion
-    const montoInput = document.getElementById("monto"); //monto de transaccion
-    const descripcion = document.getElementById("descripcion") //descripcion de transaccion
-    const totalIngresos = document.getElementById("total-ingresos"); //total de ingresos
-    const totalEgresos = document.getElementById("total-egresos"); //total de egresos
-    const porcentajeGastos = document.getElementById("porcentaje-gastos"); //porcentaje de gastos
-
-    // ===== FUNCIÓN PARA CALCULAR TOTALES =====
-    function calcularTotales() {
-        const usersBase = JSON.parse(localStorage.getItem("basedefault"));
-        const usuario = usersBase.find((u) => u.logeado === true);
-
-        if (!usuario) {
-            console.error("No hay usuario logeado");
-            return;
-        }
-
-        // Calcular suma de ingresos
-        const sumaIngresos = usuario.transacciones
-            .filter(t => t.tipo === "ingreso")
-            .reduce((acc, t) => acc + parseFloat(t.monto), 0);
-
-        // Calcular suma de egresos
-        const sumaEgresos = usuario.transacciones
-            .filter(t => t.tipo === "egreso")
-            .reduce((acc, t) => acc + parseFloat(t.monto), 0);
-
-        // Calcular monto disponible (ingresos - egresos)
-        const montoDisponible = sumaIngresos - sumaEgresos;
-
-        // Calcular porcentaje de egresos
-        const porcentaje = sumaIngresos > 0 ? (sumaEgresos / sumaIngresos) * 100 : 0;
-
-        // Actualizar el DOM
-        if (totalIngresos) {
-            totalIngresos.textContent = `+${sumaIngresos.toFixed(2)}`;
-        }
-
-        if (totalEgresos) {
-            totalEgresos.textContent = `-${sumaEgresos.toFixed(2)}`;
-        }
-
-        if (balance) {
-            balance.textContent = montoDisponible.toFixed(2);
-        }
-
-        if (porcentajeGastos) {
-            porcentajeGastos.textContent = `${porcentaje.toFixed(0)}%`;
-        }
-    }
     const balance = document.getElementById("balance");
     const boton = document.getElementById("agregar");
     const tipoDropDown = document.getElementById("tipo");
@@ -71,9 +19,6 @@ window.addEventListener("DOMContentLoaded", function () {
         if (usuario && balance) {
             balance.textContent = parseFloat(usuario.saldo).toFixed(2);
         }
-
-        // Calcular y mostrar totales
-        calcularTotales();
     }
 
     // ===== FUNCIÓN PARA ACTUALIZAR SALDO =====
@@ -208,18 +153,6 @@ window.addEventListener("DOMContentLoaded", function () {
             dibujarTransacciones(datos, lista, tipoTransaccion)
             // Limpiar campos
             descripcion.value = "";
-            montoInput.value = ""; // Limpiar el campo de monto
-            tipoDropDown.selectedIndex = 0; // Resetear el dropdown al primer option
-            
-            // Recalcular totales después de agregar transacción
-            calcularTotales();
-            
-            // Actualizar la lista de transacciones si la función existe
-            if (typeof window.actualizarVistaTransacciones === 'function') {
-                window.actualizarVistaTransacciones();
-            }
-            
-            alert("Transaccion registrada exitosamente");
             montoInput.value = "";
             tipoDropDown.selectedIndex = 0;
 

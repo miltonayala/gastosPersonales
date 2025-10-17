@@ -4,25 +4,6 @@ import {
   listarInformacionUsuario,
 } from "./localstorage.js";
 
-window.addEventListener("DOMContentLoaded", function () {
-  inicializarBase("basedefault");
-  
-  const lista = document.getElementById("lista-transacciones");
-  let tipoActual = "ingreso"; // Variable para mantener el tab activo
-
-  const dibujarTransacciones = (tipoDeTransaccion) => {
-    const datos = listarInformacionUsuario(); // Obtener datos actualizados
-    
-    if (!datos) {
-      console.error("No hay usuario logeado");
-      return;
-    }
-
-    lista.innerHTML = "";
-    datos.transacciones.forEach((t) => {
-      const div = document.createElement("div");
-      div.className =
-        "flex justify-between items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm";
 // inicializar base del localstorage
 inicializarBase("basedefault");
 // inicializar localstorage para poder trabajar
@@ -40,9 +21,6 @@ let datos = listarInformacionUsuario();
 
 const lista = document.getElementById("lista-transacciones");
 
-      div.innerHTML = `
-        <span class="text-gray-700 font-medium">${t.descripcion}</span>
-        <span class="${color} font-medium">${signo} ${parseFloat(t.monto).toFixed(2)}</span>
 // funciona para convertir el formato de fecha a uno legible
 const convertirFecha = (fecha) => {
   const date = new Date(fecha);
@@ -125,9 +103,6 @@ export const dibujarTransacciones = (base, elemento, tipoDeTransaccion) => {
 // se inicializa el primer renderizado de las transacciones
 dibujarTransacciones(datos, lista, "ingreso");
 
-      if (t.tipo === tipoDeTransaccion) lista.appendChild(div);
-    });
-  };
 // se agrega el evento al boton ingreso
 const buttonIngresos = document.getElementById("ingresos-button");
 
@@ -137,24 +112,10 @@ buttonIngresos.addEventListener("click", function () {
   buttonEgresos.classList.remove("bg-slate-800", "text-white");
   buttonEgresos.classList.add("bg-gray-200", "text-gray-700");
 
-  // Función para actualizar la vista
-  window.actualizarVistaTransacciones = function() {
-    dibujarTransacciones(tipoActual);
-  };
-
-  dibujarTransacciones("ingreso");
+  dibujarTransacciones(datos, lista, "ingreso");
 
 });
 
-  buttonIngresos.addEventListener("click", function () {
-    tipoActual = "ingreso";
-    buttonIngresos.classList.add("bg-slate-800", "text-white");
-    buttonIngresos.classList.remove("bg-gray-200", "text-gray-700");
-    buttonEgresos.classList.remove("bg-slate-800", "text-white");
-    buttonEgresos.classList.add("bg-gray-200", "text-gray-700");
-
-    dibujarTransacciones("ingreso");
-  });
 // se agrega el evento egreso
 const buttonEgresos = document.getElementById("egresos-button");
 
@@ -165,15 +126,6 @@ buttonEgresos.addEventListener("click", function () {
   buttonIngresos.classList.add("bg-gray-200", "text-gray-700");
 
 
-  buttonEgresos.addEventListener("click", function () {
-    tipoActual = "egreso";
-    buttonEgresos.classList.add("bg-slate-800", "text-white");
-    buttonEgresos.classList.remove("bg-gray-200", "text-gray-700");
-    buttonIngresos.classList.remove("bg-slate-800", "text-white");
-    buttonIngresos.classList.add("bg-gray-200", "text-gray-700");
-
-    dibujarTransacciones("egreso");
-  });
   dibujarTransacciones(datos, lista, "egreso");
 
 });
