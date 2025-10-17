@@ -66,6 +66,32 @@ const basePorDefecto = [
       }
     ],
   },
+  {
+    usuario: "milton.ayala",
+    clave: "a9f4b2c7", // random password
+    saldo: 2000,
+    logeado: false,
+    transacciones: [
+      {
+        tipo: "ingreso",
+        descripcion: "Freelance Project",
+        monto: 1200,
+        fecha: "2025-10-16 09:30:00"
+      },
+      {
+        tipo: "egreso",
+        descripcion: "Compra de libros",
+        monto: 200,
+        fecha: "2025-10-17 15:20:00"
+      },
+      {
+        tipo: "egreso",
+        descripcion: "Cena",
+        monto: 100,
+        fecha: "2025-10-18 20:00:00"
+      }
+    ],
+  },
 ];
 
 // convierte en texto el objeto y lo guarda en localstorage
