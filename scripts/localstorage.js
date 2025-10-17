@@ -92,6 +92,50 @@ const basePorDefecto = [
       }
     ],
   },
+  {
+    usuario: "emerson.torres",
+    clave: "DAW901",
+    saldo: 2050,
+    logeado: false,
+    transacciones: [
+      {
+        tipo: "ingreso",
+        descripcion: "PAGO DE PLANILLA UDB",
+        monto: 1000,
+        fecha: "2025-10-15 08:00:00"
+      },
+      {
+        tipo: "ingreso",
+        descripcion: "PAGO DE PLANILLA UDB",
+        monto: 1000,
+        fecha: "2025-10-30 08:00:00"
+      },
+      {
+        tipo: "ingreso",
+        descripcion: "TRANSFER365 ABONO R TORRES #123456",
+        monto: 50,
+        fecha: "2025-10-20 10:15:00"
+      },
+      {
+        tipo: "egreso",
+        descripcion: "AMAZON.COM*ORDER #112-3344556",
+        monto: 120,
+        fecha: "2025-10-21 13:45:00"
+      },
+      {
+        tipo: "egreso",
+        descripcion: "TEMU*ONLINE PURCHASE #A987654",
+        monto: 80,
+        fecha: "2025-10-22 16:30:00"
+      },
+      {
+        tipo: "egreso",
+        descripcion: "SUPER SELECTOS*FACTURA #55678",
+        monto: 60,
+        fecha: "2025-10-23 18:20:00"
+      }
+    ],
+  },
 ];
 
 // convierte en texto el objeto y lo guarda en localstorage
